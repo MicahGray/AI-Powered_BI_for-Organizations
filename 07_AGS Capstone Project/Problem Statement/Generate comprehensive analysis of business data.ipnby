@@ -1,0 +1,51 @@
+def generate_advanced_data_summary(df):
+    """
+    Generate comprehensive analysis of business data
+    """
+    summary = {}
+
+    # Calculate statistical measures
+    summary['total_sales'] = df['sales'].sum()
+    summary['average_sales'] = df['sales'].mean()
+    summary['median_sales'] = df['sales'].median()
+    summary['std_sales'] = df['sales'].std()
+
+    # Time-based analysis
+    summary['sales_by_month'] = df.groupby(df['date'].dt.month)['sales'].sum()
+
+    # Product analysis
+    summary['sales_by_product'] = df.groupby('product')['sales'].sum()
+    summary['satisfaction_by_product'] = df.groupby('product')['customer_satisfaction'].mean()
+
+    # Region analysis
+    summary['sales_by_region'] = df.groupby('region')['sales'].sum()
+
+    # Customer segmentation
+    summary['sales_by_age'] = df.groupby('customer_age')['sales'].mean()
+    summary['sales_by_gender'] = df.groupby('customer_gender')['sales'].sum()
+
+    # Format as text
+    summary_text = f"""
+    ADVANCED SALES SUMMARY
+
+    Total Metrics:
+    - Total Sales: ${summary['total_sales']:,.2f}
+    - Average Sales: ${summary['average_sales']:,.2f}
+    - Median Sales: ${summary['median_sales']:,.2f}
+    - Standard Deviation: ${summary['std_sales']:,.2f}
+
+    Time-Based Analysis:
+    {summary['sales_by_month'].to_string()}
+
+    Product Analysis:
+    {summary['sales_by_product'].to_string()}
+
+    Region Performance:
+    {summary['sales_by_region'].to_string()}
+
+    Customer Insights:
+    Sales by Age: {summary['sales_by_age'].to_string()}
+    Sales by Gender: {summary['sales_by_gender'].to_string()}
+    """
+
+    return summary_text

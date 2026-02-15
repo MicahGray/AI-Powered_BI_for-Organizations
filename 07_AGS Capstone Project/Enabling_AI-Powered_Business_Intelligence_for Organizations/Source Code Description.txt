@@ -1,0 +1,12 @@
+The source code includes the complete InsightForge implementation:
+- Data preparation and feature engineering
+- Statistical summary generation
+- Knowledge‑base document creation
+- FAISS vector store and OpenAI embeddings
+- Custom pandas‑based retriever and RAG pipeline
+- KMeans segmentation, Isolation Forest anomaly detection, Holt‑Winters forecasting
+- LangChain LCEL chains for classification and insight generation
+- QAEvalChain evaluation module
+- Streamlit UI with dashboards, filters, charts, and chat interface
+All code is contained in a single Streamlit application file with supporting dataset(s).
+
